@@ -1,8 +1,8 @@
 {
+  "homepage": "http://chrisza4.github.io/number-to-words-ts",
   "name": "number-in-words-ts",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://chrisza4.github.io/number-in-words",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
