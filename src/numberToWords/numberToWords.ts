@@ -1,31 +1,51 @@
-export function numberToWords(number: number): string {
-  let str = ''
+type NumberToStringMap = { [key: number]: string }
 
-  const moreThanDigitThree = Math.floor(number / 1000)
-  if (moreThanDigitThree >= 1) {
-    str = concatNumberString(
-      str,
-      `${translateThreeDigitNumber(moreThanDigitThree)} thousand `
-    )
+export function numberToWords(number: number): string {
+  const largeNumberSuffixes = [
+    '',
+    'thousand',
+    'million',
+    'billion',
+    'trillion',
+    'quadrillion',
+    'sextillion',
+  ]
+  const numberInThrees = cutNumbersInThree(number)
+  if (numberInThrees.length > largeNumberSuffixes.length) {
+    return 'Number too large'
   }
-  return concatNumberString(str, translateThreeDigitNumber(number % 1000))
+  return (
+    numberInThrees
+      .reduce<string[]>((acc, number, index) => {
+        const thisThreeDigitsStr = translateThreeDigitNumber(number)
+        const suffix = largeNumberSuffixes[index] || ''
+        const thisDigitStr = thisThreeDigitsStr
+          ? concatNumberString(thisThreeDigitsStr, suffix)
+          : ''
+        acc.push(thisDigitStr)
+        return acc
+      }, [])
+      // This transformation step:
+      // [101, 111, 20] -> ['one hundred one', 'one hundred eleven thousand', 'twenty million']
+      .reverse()
+      .join(' ')
+      .trim()
+  )
 }
 
 function translateThreeDigitNumber(number: number) {
-  let str = ''
   const digitThree = Math.floor((number % 1000) / 100)
-  if (digitThree >= 1) {
-    str = concatNumberString(
-      str,
-      `${translateTwoDigitsNumber(digitThree)} hundred `
-    )
-  }
+  const digitThreeStr =
+    digitThree >= 1 ? `${translateTwoDigitsNumber(digitThree)} hundred` : ''
   const lastTwoDigits = number % 100
-  return concatNumberString(str, translateTwoDigitsNumber(lastTwoDigits))
+  return concatNumberString(
+    digitThreeStr,
+    translateTwoDigitsNumber(lastTwoDigits)
+  )
 }
 
 function translateTwoDigitsNumber(number: number) {
-  const numberToWordMapOneDigit = {
+  const numberToWordMapOneDigit: NumberToStringMap = {
     1: 'one',
     2: 'two',
     3: 'three',
@@ -46,7 +66,7 @@ function translateTwoDigitsNumber(number: number) {
     18: 'eighteen',
     19: 'nineteen',
   }
-  const numberToWordMapTwoDigit = {
+  const numberToWordMapTwoDigit: NumberToStringMap = {
     2: 'twenty',
     3: 'thirty',
     4: 'fourty',
@@ -69,5 +89,18 @@ function concatNumberString(first: string, second: string): string {
   if (!second) {
     return first.trim()
   }
-  return first + second
+  if (!first) {
+    return second.trim()
+  }
+  return `${first.trim()} ${second}`
+}
+
+export function cutNumbersInThree(n: number): number[] {
+  const digits = Math.floor(Math.log10(n))
+  const res: number[] = []
+  for (let i = 0; i <= digits; i += 3) {
+    const thisDigits = n % Math.pow(10, i + 3)
+    res.push(Math.floor(thisDigits / Math.pow(10, i)))
+  }
+  return res
 }

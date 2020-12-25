@@ -1,4 +1,4 @@
-import { numberToWords } from './numberToWords'
+import { numberToWords, cutNumbersInThree } from './numberToWords'
 
 describe('numberToWords', () => {
   it('Can translate single digit', () => {
@@ -64,5 +64,39 @@ describe('numberToWords', () => {
     expect(numberToWords(999999)).toEqual(
       'nine hundred ninety nine thousand nine hundred ninety nine'
     )
+  })
+
+  it('Can translate number between 1,000,000 to 999,999,999', () => {
+    expect(numberToWords(1_000_000)).toEqual('one million')
+    expect(numberToWords(1_005_555)).toEqual(
+      'one million five thousand five hundred fifty five'
+    )
+    expect(numberToWords(20_111_999)).toEqual(
+      'twenty million one hundred eleven thousand nine hundred ninety nine'
+    )
+    expect(numberToWords(999_999_999)).toEqual(
+      'nine hundred ninety nine million nine hundred ninety nine thousand nine hundred ninety nine'
+    )
+  })
+
+  it('Can translate number between 1,000,000,000 to 999,999,999,999', () => {
+    expect(numberToWords(1_000_000_000)).toEqual('one billion')
+    expect(numberToWords(1_001_005_555)).toEqual(
+      'one billion one million five thousand five hundred fifty five'
+    )
+    expect(numberToWords(20_020_111_999)).toEqual(
+      'twenty billion twenty million one hundred eleven thousand nine hundred ninety nine'
+    )
+    expect(numberToWords(999_999_999_999)).toEqual(
+      'nine hundred ninety nine billion nine hundred ninety nine million nine hundred ninety nine thousand nine hundred ninety nine'
+    )
+  })
+
+  describe('cutNumbersInThree', () => {
+    it('Able to cut number in three', () => {
+      expect(cutNumbersInThree(300)).toEqual([300])
+      expect(cutNumbersInThree(1300)).toEqual([300, 1])
+      expect(cutNumbersInThree(20_111_999)).toEqual([999, 111, 20])
+    })
   })
 })
