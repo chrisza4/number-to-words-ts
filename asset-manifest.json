@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/number-in-words/static/css/main.8c8b27cf.chunk.css",
+    "main.js": "/number-in-words/static/js/main.246300c3.chunk.js",
+    "main.js.map": "/number-in-words/static/js/main.246300c3.chunk.js.map",
+    "runtime-main.js": "/number-in-words/static/js/runtime-main.446cc304.js",
+    "runtime-main.js.map": "/number-in-words/static/js/runtime-main.446cc304.js.map",
+    "static/js/2.bf8a18dc.chunk.js": "/number-in-words/static/js/2.bf8a18dc.chunk.js",
+    "static/js/2.bf8a18dc.chunk.js.map": "/number-in-words/static/js/2.bf8a18dc.chunk.js.map",
+    "static/js/3.c5cfd5ad.chunk.js": "/number-in-words/static/js/3.c5cfd5ad.chunk.js",
+    "static/js/3.c5cfd5ad.chunk.js.map": "/number-in-words/static/js/3.c5cfd5ad.chunk.js.map",
+    "index.html": "/number-in-words/index.html",
+    "static/css/main.8c8b27cf.chunk.css.map": "/number-in-words/static/css/main.8c8b27cf.chunk.css.map",
+    "static/js/2.bf8a18dc.chunk.js.LICENSE.txt": "/number-in-words/static/js/2.bf8a18dc.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.446cc304.js",
+    "static/js/2.bf8a18dc.chunk.js",
+    "static/css/main.8c8b27cf.chunk.css",
+    "static/js/main.246300c3.chunk.js"
+  ]
+}
