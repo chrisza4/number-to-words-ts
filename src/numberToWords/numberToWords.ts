@@ -33,7 +33,7 @@ export function numberToWords(number: number): string {
   )
 }
 
-function translateThreeDigitNumber(number: number) {
+function translateThreeDigitNumber(number: number): string {
   const digitThree = Math.floor((number % 1000) / 100)
   const digitThreeStr =
     digitThree >= 1 ? `${translateTwoDigitsNumber(digitThree)} hundred` : ''
@@ -44,7 +44,7 @@ function translateThreeDigitNumber(number: number) {
   )
 }
 
-function translateTwoDigitsNumber(number: number) {
+function translateTwoDigitsNumber(number: number): string {
   const numberToWordMapOneDigit: NumberToStringMap = {
     1: 'one',
     2: 'two',

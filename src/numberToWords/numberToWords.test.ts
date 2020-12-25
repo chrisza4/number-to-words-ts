@@ -97,6 +97,7 @@ describe('numberToWords', () => {
       expect(cutNumbersInThree(300)).toEqual([300])
       expect(cutNumbersInThree(1300)).toEqual([300, 1])
       expect(cutNumbersInThree(20_111_999)).toEqual([999, 111, 20])
+      expect(cutNumbersInThree(333_920_111_999)).toEqual([999, 111, 920, 333])
     })
   })
 })
